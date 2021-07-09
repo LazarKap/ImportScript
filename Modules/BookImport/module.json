@@ -1,0 +1,13 @@
+{
+    "name": "BookImport",
+    "alias": "bookimport",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\BookImport\\Providers\\BookImportServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
