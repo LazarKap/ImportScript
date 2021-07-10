@@ -13,13 +13,23 @@ class XmlImport {
         // Convert xml string into an object
         $newXml = simplexml_load_string($xmlfile);
         // Convert into json
-        $jsonXml = json_encode($newXml);
+        $jsonXml = json_encode((array)$newXml);
         // Convert into associative array
         $arrXml = json_decode($jsonXml, true);
 
+        $arrayTest = array_column(array_column($arrXml['Record'], 'Row'), '@attributes');
+        $headers = array_shift($arrayTest);
+
+        $data = [];
+
+        foreach($arrayTest as $row){
+            $data[] = array_combine($headers, $row);
+        }
+
+
         
         try {
-            DB::table('books')->insert($arrXml);
+            DB::table('books')->insert($data);
             session()->flash('message', 'Podaci sacuvani');
         } catch (\Exception $e) {
             session()->flash('message', $e->getMessage());

@@ -26,13 +26,10 @@ class CsvImport
 
                 $dataNew    =  array_combine($columnsNew, str_getcsv($row));
 
-                // $date       = strtotime($dataNew['godina_izdanja']);
-
-
+                $date       = Date::createFromFormat("d/m/Y", $dataNew['godina_izdanja'])->format('Y-m-d');
                 $author     = $dataNew['autor'];
                 
-                $dataNew['godina_izdanja'] = Date::createFromFormat("d/m/Y", $dataNew['godina_izdanja'])->format('Y-m-d');
-                // $dataNew['godina_izdanja'] = date("Y-m-d",$date);
+                $dataNew['godina_izdanja'] = $date;
                 $dataNew['autor'] = str_replace(",", " ", $author);
 
                 $data[] = $dataNew; 

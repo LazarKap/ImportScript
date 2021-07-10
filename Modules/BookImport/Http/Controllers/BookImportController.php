@@ -38,7 +38,7 @@ class BookImportController extends Controller
 
         } catch (Exception $e) {
 
-            session()->flash('message', $e->getMessage());
+            session()->flash('Greska prilikom importovanja fajla', $e->getMessage());
             return redirect()->route('import_view');
 
         }

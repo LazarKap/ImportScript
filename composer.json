@@ -12,6 +12,8 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "maatwebsite/excel": "^3.1",
+        "nesbot/carbon": "^2.50",
         "nwidart/laravel-modules": "^8.2"
     },
     "require-dev": {
