@@ -3,11 +3,19 @@
 namespace Modules\BookImport\Helpers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Date;
+use Modules\BookImport\Helpers\AbstractImport;
 
 
 
-class XmlImport {
 
+class XmlImport extends AbstractImport {
+    
+    /**
+     * import funkcija koja sluzi za import knjiga u bazu podataka
+     *
+     * @param  mixed $importfile
+     * @return void
+     */
     public function import($importfile)
     {
         // Read entire file into string
@@ -19,26 +27,27 @@ class XmlImport {
         // Convert into associative array
         $arrXml = json_decode($jsonXml, true);
 
-        $data = $arrXml['row'];
+        $dataNew = [];
 
-        foreach ($data as $row) {
+        foreach($arrXml['row'] as $key => $row){
 
+            
+            $date   = $this->dateConverter($row);
+            $author = $this->authorTransform($row);
 
+            $dataNew[] = $row;
 
-                $date       = Date::createFromFormat("d/m/Y", $row['Godina_Izdanja'])->format('Y-m-d');
-                $author     = str_replace(",", " ", $row['Autor']);
-
-                $row['godina_izdanja'] = $date;
-                $row['autor'] = $author;
-
-                $dataFin[] = $dataNew; 
-
+            $dataNew[$key]['godina_izdanja'] = $date;
+            $dataNew[$key]['autor'] = $author;
         }
 
         try {
-            DB::table('books')->insert($data);
+
+            DB::table('books')->insert($dataNew);
             session()->flash('message', 'Podaci sacuvani');
+
         } catch (\Exception $e) {
+
             session()->flash('message', $e->getMessage());
         }
 

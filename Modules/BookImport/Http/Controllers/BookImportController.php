@@ -44,6 +44,7 @@ class BookImportController extends Controller
         }
 
         return redirect()->route('import_view');
+
     }
 
     private function importer($importType){
@@ -51,9 +52,11 @@ class BookImportController extends Controller
         $helperNamespace = "\\Modules\\BookImport\\Helpers\\";
 
         $importer = ($helperNamespace) . ucfirst($importType) . "Import";
+
         if (!class_exists($importer)) {
             throw new Exception('Ekstenzija'. ($importType) .'nije podrzana');
         }
+        
         return new $importer;
 
     }

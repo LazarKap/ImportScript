@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>ImportScript</h1>
+
+    <p class="text-center">Da bi prtrazivali knjige registrujte se / ulogujte se kao member.</p>
+    <p class="text-center">Da bi prtrazivali knjige i importovali knjige registrujte se / ulogujte se kao admin.</p>
+
 @endsection

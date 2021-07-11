@@ -25,12 +25,17 @@ class BookSearchController extends Controller
 
     public function search(Request $request){
 
-        $searchName = $request->input('search');
+        $searchName = $request->input('search_name');
         $searchYear = $request->input('search_year');
     
-        $books = $this->book->search($searchName, $searchYear);
+        $books      = $this->book->search($searchName, $searchYear)->get();
 
-        return view('bookimport::booksearch')->with('books', $books);
+        return view('bookimport::booksearch')
+        ->with([
+            'books'         => $books,
+            'search_name'   => $searchName,
+            'search_year'   => $searchYear
+        ]);
     }
 
     public function showBook($id){

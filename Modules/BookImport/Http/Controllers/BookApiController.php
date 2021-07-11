@@ -24,7 +24,7 @@ class BookApiController extends Controller
             $response = [
                 'status'    => 'success',
                 'message'   => 'Books were successfully fetched',
-                'books'  => $books
+                'books'     => $books
             ];
         } else {
             $response = [
@@ -48,7 +48,7 @@ class BookApiController extends Controller
             $response = [
                 'status'    => 'success',
                 'message'   => 'Book was successfully fetched',
-                'book'  => $book
+                'book'      => $book
             ];
         } else {
             $response = [

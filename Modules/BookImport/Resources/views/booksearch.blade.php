@@ -7,22 +7,24 @@
             <div class="card">
                 <div class="card-header">Search for book</div>
 
-
-
                 <div class="card-body">
 
                     <form method="get" action="{{route('search-book')}}">
                     @csrf
                         <div class="input-group m-3 w-50">
-                            <input name="search" type="text" class="form-control" placeholder="Pretrazite prema nazivu"aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                            <input value="{{$search_name ?? ''}}" name="search_name" type="text" class="form-control" placeholder="Pretrazite prema nazivu"aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                                Search
+                            </button>
                         </div>
+
                         <select class="form-select m-3 w-50" value="" name="search_year">
                             <option selected disabled>Godina Starosti</option>
                             <option value="5">Do 5 godina</option>
                             <option value="10">Do 10 godina</option>
-                            <option value="100">Preko 10 godina</option>
-                        </select>                            
+                            <option value="older10">Preko 10 godina</option>
+                        </select>  
+
                     </form>
 
                     @if($books)

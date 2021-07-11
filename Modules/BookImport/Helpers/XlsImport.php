@@ -3,14 +3,14 @@
 namespace Modules\BookImport\Helpers;
 
 use Illuminate\Http\Request;
-use Modules\BookImport\Helpers\AbstractImporter;
+use Modules\BookImport\Helpers\ImportBookModel;
 use Maatwebsite\Excel\Facades\Excel;
 
 class XlsImport {
 
     public function import($importFile){
 
-        Excel::import(new AbstractImporter, $importFile);
+        Excel::import(new ImportBookModel, $importFile);
         
     }
 

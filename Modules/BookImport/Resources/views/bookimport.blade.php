@@ -3,11 +3,15 @@
 
 @section('content')
 <div class="d-flex justify-content-center">
+
     <form method='post' action="{{route('import_file')}}" enctype='multipart/form-data'>
         @csrf
+
         <div class="custom-file">
             <input type="file" class="custom-file-input" name="import_file" id="importFile" required>
-            <label class="custom-file-label" for="importFile">Upload a file</label>
+            <label class="custom-file-label" for="importFile">
+                Upload a file
+            </label>
         </div>
     
         <div class="mt-2">
@@ -15,6 +19,8 @@
                 Import Books
             </button>
         </div>
+
     </form>
+    
 </div>
 @endsection
