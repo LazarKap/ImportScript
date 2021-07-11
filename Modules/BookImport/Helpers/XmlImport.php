@@ -2,6 +2,8 @@
 
 namespace Modules\BookImport\Helpers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Date;
+
 
 
 class XmlImport {
@@ -17,17 +19,22 @@ class XmlImport {
         // Convert into associative array
         $arrXml = json_decode($jsonXml, true);
 
-        $arrayTest = array_column(array_column($arrXml['Record'], 'Row'), '@attributes');
-        $headers = array_shift($arrayTest);
+        $data = $arrXml['row'];
 
-        $data = [];
+        foreach ($data as $row) {
 
-        foreach($arrayTest as $row){
-            $data[] = array_combine($headers, $row);
+
+
+                $date       = Date::createFromFormat("d/m/Y", $row['Godina_Izdanja'])->format('Y-m-d');
+                $author     = str_replace(",", " ", $row['Autor']);
+
+                $row['godina_izdanja'] = $date;
+                $row['autor'] = $author;
+
+                $dataFin[] = $dataNew; 
+
         }
 
-
-        
         try {
             DB::table('books')->insert($data);
             session()->flash('message', 'Podaci sacuvani');

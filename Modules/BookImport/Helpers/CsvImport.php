@@ -3,10 +3,10 @@
 namespace Modules\BookImport\Helpers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Date;
+use Modules\BookImport\Helpers\AbstractImporter;
 
 class CsvImport 
 {
-
     public function import($importfile)
     {
         $file = file($importfile);
@@ -19,7 +19,6 @@ class CsvImport
                 $columns = str_getcsv($row);
                 foreach ($columns as $column) {
                 $columnsNew[] = str_replace(" ", "_", strtolower($column));
-                
                 }
                 
             } else if (!empty($columnsNew)) {

@@ -17,7 +17,6 @@ class AbstractImporter implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         try {
-
             return new Book([
                 'naziv_knjige'      => $row['naziv_knjige'],
                 'autor'             => str_replace(",", " ", $row['autor']),
@@ -32,7 +31,7 @@ class AbstractImporter implements ToModel, WithHeadingRow
     }
 
     public function dateConverter(){
-
+        
     }
 
     public function columnNameTransform(){
@@ -41,6 +40,7 @@ class AbstractImporter implements ToModel, WithHeadingRow
 
     public function authorNameTransfcorm(){
 
+    }
     
 
 

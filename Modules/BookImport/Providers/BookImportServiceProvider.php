@@ -18,6 +18,9 @@ class BookImportServiceProvider extends ServiceProvider
         $this->loadViewsFrom(module_path('BookImport', '/Resources/views'), 'bookimport');
 
         $this->loadRoutesFrom(module_path('BookImport', '/Routes/web.php'));
+
+        $this->loadRoutesFrom(module_path('BookImport', '/Routes/api.php'));
+
     }
 
     /**

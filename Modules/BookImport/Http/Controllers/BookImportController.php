@@ -57,5 +57,4 @@ class BookImportController extends Controller
         return new $importer;
 
     }
-
 }
