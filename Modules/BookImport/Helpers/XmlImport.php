@@ -18,13 +18,10 @@ class XmlImport extends AbstractImport {
      */
     public function import($importfile)
     {
-        // Read entire file into string
+        
         $xmlfile = file_get_contents($importfile);
-        // Convert xml string into an object
         $newXml = simplexml_load_string($xmlfile);
-        // Convert into json
         $jsonXml = json_encode((array)$newXml);
-        // Convert into associative array
         $arrXml = json_decode($jsonXml, true);
 
         $dataNew = [];
