@@ -14,7 +14,7 @@ class BookImportRequest extends FormRequest
     public function rules()
     {
         return [
-            'import_file' => 'required', 'mimes:csv,xml,xlsx'
+            'import_file' => 'required | mimes:csv,xml,xlsx'
         ];
     }
 
